@@ -23,7 +23,7 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            greet, my_command, ping, save, list_saves
+            greet, my_command, ping, save, list_saves,delete_id
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -48,4 +48,14 @@ async fn save(save: Save, db: tauri::State<'_, Db>) -> Result<(), String> {
 #[tauri::command]
 async fn list_saves(db: tauri::State<'_, Db>) -> Result<Vec<Save>, String> {
     db.list().await.map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+async fn delete_id(id: i64,db: tauri::State<'_, Db> ) -> Result<String,String> {
+    db.delete(id).await.map_err(|e| e.to_string()).unwrap();
+
+    let shik = format!("Here is your id THAT HAS BEEN DELETED FROM SERVER SIDE {}",id);
+
+    Ok(shik)
+
 }

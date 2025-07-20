@@ -3,6 +3,7 @@ use sqlx::{sqlite::SqlitePoolOptions, SqlitePool};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Save {
+    pub id : i64,
     pub name: String,
     pub link: String,
 }
@@ -39,8 +40,17 @@ impl Db {
     }
 
     pub async fn list(&self) -> Result<Vec<Save>, sqlx::Error> {
-        sqlx::query_as!(Save, "SELECT name, link FROM saves")
+        sqlx::query_as!(Save, "SELECT id, name, link FROM saves")
             .fetch_all(&self.0)
             .await
     }
+    
+    pub async fn delete(&self, id: i64) -> Result<(), sqlx::Error> {
+    sqlx::query!("DELETE FROM saves WHERE id = ?", id)
+        .execute(&self.0)
+        .await?;
+    Ok(())
+}
+
+
 }

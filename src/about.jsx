@@ -7,6 +7,8 @@ function About() {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [saves, setSaves] = useState([]);
+  const [id, setId] = useState([]);
+  const [did, setDid] = useState([]);
 
   
   useEffect(() => {
@@ -26,6 +28,13 @@ function About() {
     setSaves(list);
   };
 
+  async function handleDelete() {
+    setDid(await invoke("delete_id", {id}));
+    console.log(did);
+  }
+
+
+  
   return (
     <main className="container">
       <h1>About</h1>
@@ -53,7 +62,16 @@ function About() {
               <a href={item.link}>
                 {item.link}
               </a>
+              <div>
+
+                <button onClick={() => setId(item.id)}>Delete</button>
+                <button onClick={handleDelete}>PERMDEL</button>
+              <p>{item.id}</p>
+              <p>{id}</p>
+              <p>{did}</p>
+              </div>
             </li>
+            
           ))}
         </ul>
       )}
