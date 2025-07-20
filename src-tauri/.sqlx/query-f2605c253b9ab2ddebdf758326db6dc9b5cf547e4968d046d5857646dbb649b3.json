@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO saves (name, link) VALUES (?, ?)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 2
+    },
+    "nullable": []
+  },
+  "hash": "f2605c253b9ab2ddebdf758326db6dc9b5cf547e4968d046d5857646dbb649b3"
+}
