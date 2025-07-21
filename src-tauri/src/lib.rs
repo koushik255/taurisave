@@ -4,8 +4,8 @@ use tauri::Emitter;
 
 use db::{Db, Save};
 use tauri::Manager;
-
 mod db;
+
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -18,12 +18,12 @@ pub fn run() {
         .plugin(tauri_plugin_sql::Builder::new().build())
         .plugin(tauri_plugin_opener::init())
         .setup(|app| {
-            let db = tauri::async_runtime::block_on(db::Db::new()).expect("cout not open DB");
+            let db = tauri::async_runtime::block_on(Db::new()).expect("cout not open DB");
             app.manage(db);
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            greet, my_command, ping, save, list_saves,delete_id
+            greet, my_command, ping, save, list_saves,delete_id,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -31,7 +31,7 @@ pub fn run() {
 
 #[tauri::command]
 fn my_command() -> String {
-    format!("Hello, ! this is kouhsik")
+    "Hello, ! this is kouhsik".to_string()
 }
 
 #[tauri::command]
@@ -58,4 +58,8 @@ async fn delete_id(id: i64,db: tauri::State<'_, Db> ) -> Result<String,String> {
 
     Ok(shik)
 
+
+// now i need to make it so the components are like square and 
+// it will render the metadata from the links
 }
+

@@ -9,7 +9,9 @@ function App() {
   const [name, setName] = useState("");
   const [helloMsg, setHelloMsg] = useState("");
   const [pingMsg,setPingMsg] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
+
+  
   
 
   useEffect(() => {
@@ -52,6 +54,7 @@ function App() {
       <p>{greetMsg}</p>
       <p>{helloMsg}</p>
       <p>{pingMsg}</p>
+      
       <button onClick={ ()=> navigate("/about")}>Go to about</button>
     </main>
   );
