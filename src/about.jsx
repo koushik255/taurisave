@@ -20,7 +20,7 @@ function About() {
 
   const handleSave = async () => {
     if (!name.trim() || !link.trim()) return;
-    await invoke("save", { save: { name, link } });
+    await invoke("save", { save: { id: null, name, link } });
     setName("");
     setLink("");
     

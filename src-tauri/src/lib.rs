@@ -63,3 +63,21 @@ async fn delete_id(id: i64,db: tauri::State<'_, Db> ) -> Result<String,String> {
 // it will render the metadata from the links
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

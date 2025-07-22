@@ -3,7 +3,7 @@ use sqlx::{sqlite::SqlitePoolOptions, SqlitePool};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Save {
-    pub id : i64,
+    pub id : Option<i64>,
     pub name: String,
     pub link: String,
 }
